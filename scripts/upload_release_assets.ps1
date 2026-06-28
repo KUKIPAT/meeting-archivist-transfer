@@ -33,8 +33,13 @@ Download all assets into the same folder, verify SHA256SUMS.txt, then extract ru
 This release is intended to be deleted after download is complete.
 "@
 
-$existing = gh release view $Tag --repo $Repo 2>$null
-if ($LASTEXITCODE -ne 0) {
+$previousErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = "SilentlyContinue"
+gh release view $Tag --repo $Repo *> $null
+$releaseViewExitCode = $LASTEXITCODE
+$ErrorActionPreference = $previousErrorActionPreference
+
+if ($releaseViewExitCode -ne 0) {
   Write-Host "Creating release $Tag"
   gh release create $Tag --repo $Repo --title $Title --notes $notes
   if ($LASTEXITCODE -ne 0) {
@@ -54,4 +59,3 @@ foreach ($asset in $assets) {
 
 Write-Host "Release assets uploaded:"
 gh release view $Tag --repo $Repo --web
-
