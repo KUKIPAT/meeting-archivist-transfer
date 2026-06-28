@@ -1,0 +1,14 @@
+# Keep this repository lightweight. Large transfer artifacts belong in
+# GitHub Release assets, not in git history.
+*.7z
+*.7z.*
+*.zip
+*.msi
+*.cab
+*.wixpdb
+*.sha256
+SHA256SUMS.txt
+release_payload/
+staging/
+dist/
+
