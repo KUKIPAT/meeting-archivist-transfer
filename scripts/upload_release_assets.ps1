@@ -26,9 +26,9 @@ if (-not $Title) {
 }
 
 $notes = @"
-Temporary transfer release for AI 회의기록관.
+Temporary transfer release.
 
-Download all assets into the same folder, verify SHA256SUMS.txt, then extract runtime-package.7z.001 with 7-Zip.
+Download all assets into the same folder and verify SHA256SUMS.txt.
 
 This release is intended to be deleted after download is complete.
 "@

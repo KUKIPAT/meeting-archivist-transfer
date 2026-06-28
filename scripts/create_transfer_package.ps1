@@ -64,7 +64,7 @@ if (Test-Path -LiteralPath $OutputDir) {
 New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
 
 $installText = @"
-AI 회의기록관 설치 파일 전달본
+Temporary transfer package
 
 1. 이 폴더의 파일을 모두 같은 위치에 둡니다.
 2. 7-Zip으로 runtime-package.7z.001 파일을 선택해 압축을 풉니다.
@@ -77,7 +77,6 @@ Get-ChildItem .\runtime-package.7z.* | Get-FileHash -Algorithm SHA256
 
 주의:
 - cab*.cab 파일이 MSI와 같은 폴더에 있어야 설치됩니다.
-- 회사 자료나 회의 녹음은 이 전달본에 포함되어 있지 않습니다.
 - 다운로드 후 GitHub Release는 삭제 예정입니다.
 "@
 
@@ -104,4 +103,3 @@ Get-ChildItem -LiteralPath $OutputDir -File |
 
 Write-Host "Transfer package created:"
 Get-ChildItem -LiteralPath $OutputDir -File | Sort-Object Name | Format-Table Name, Length -AutoSize
-

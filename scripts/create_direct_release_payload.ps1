@@ -44,7 +44,7 @@ foreach ($cab in $cabFiles) {
 }
 
 $installText = @"
-AI 회의기록관 설치 파일 전달본
+Temporary transfer package
 
 다운로드:
 1. GitHub Release asset의 AI-Meeting-Archivist-Offline.msi 파일을 받습니다.
@@ -61,7 +61,6 @@ Get-ChildItem .\AI-Meeting-Archivist-Offline.msi, .\cab*.cab | Get-FileHash -Alg
 
 주의:
 - cab*.cab 파일이 하나라도 빠지면 설치가 실패합니다.
-- 회사 자료나 회의 녹음은 이 전달본에 포함되어 있지 않습니다.
 - 다운로드 후 GitHub Release는 삭제 예정입니다.
 "@
 
@@ -78,4 +77,3 @@ Get-ChildItem -LiteralPath $OutputDir -File |
 
 Write-Host "Direct release payload created:"
 Get-ChildItem -LiteralPath $OutputDir -File | Sort-Object Name | Format-Table Name, Length -AutoSize
-
