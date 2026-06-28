@@ -16,6 +16,16 @@
 
 PowerShell에서 이 repo 폴더로 이동한 뒤:
 
+7-Zip이 없으면 MSI와 CAB 파일을 그대로 Release asset으로 올립니다.
+
+```powershell
+.\scripts\create_direct_release_payload.ps1 `
+  -SourceDist "E:\Finetune\QWEN3_ASR\dist" `
+  -OutputDir ".\release_payload_direct"
+```
+
+7-Zip이 있으면 분할 압축본을 만들 수도 있습니다.
+
 ```powershell
 .\scripts\create_transfer_package.ps1 `
   -SourceDist "E:\Finetune\QWEN3_ASR\dist" `
@@ -26,9 +36,10 @@ PowerShell에서 이 repo 폴더로 이동한 뒤:
 결과물:
 
 ```text
-release_payload/
-  runtime-package.7z.001
-  runtime-package.7z.002
+release_payload_direct/
+  AI-Meeting-Archivist-Offline.msi
+  cab1.cab
+  cab2.cab
   ...
   SHA256SUMS.txt
   INSTALL_KO.txt
@@ -40,7 +51,7 @@ release_payload/
 .\scripts\upload_release_assets.ps1 `
   -Tag "transfer-20260628" `
   -Title "Temporary transfer 2026-06-28" `
-  -PayloadDir ".\release_payload"
+  -PayloadDir ".\release_payload_direct"
 ```
 
 업로드가 끝나면 repo의 Releases 페이지에서 asset 다운로드 링크를 확인합니다.
@@ -65,4 +76,3 @@ INSTALL_KO.txt
 - 공개 Release는 필요한 시간만 열어둡니다.
 - 업로드 파일은 2GiB 미만이어야 하므로 기본 분할 크기는 `1200m`입니다.
 - repo 파일로 대용량을 commit/push하지 않습니다.
-
